@@ -24,5 +24,5 @@ Mouse and left click to shoot
 - Level structure
 - Use a font that scales
 - Sound
-- Figure out how to handle callbacks to objects that have been free'd in GDScript
+- Figure out how to handle https://github.com/godotengine/godot/issues/24311
 
