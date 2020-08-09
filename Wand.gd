@@ -1,9 +1,7 @@
 extends Node2D
 
 var dead = false
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+
 var spell = preload("res://Spell.tscn")
 var can_fire = true
 export var rate_of_fire = 0.4

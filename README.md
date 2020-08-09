@@ -17,14 +17,12 @@ Mouse and left click to shoot
 
 ## To Do
 
-- Clean up project structure
+- Further clean up project structure
 - Fix tileset layering z-order issues
 - Add actual enemies
 - Camera
 - Level structure
 - Use a font that scales
 - Sound
-
-
-
+- Figure out how to handle callbacks to objects that have been free'd in GDScript
 

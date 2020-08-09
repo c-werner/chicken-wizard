@@ -1,10 +1,5 @@
 extends RigidBody2D
 
-
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
 export var speed = 200
 var life_time = 3
 var Poof = preload("res://Poof.tscn")
@@ -20,7 +15,6 @@ func _ready():
 func killself():
 	yield(get_tree().create_timer(life_time), "timeout")
 	collide()
-	#queue_free()
 	
 func collide():
 	$Sprite/Trail.emitting = false

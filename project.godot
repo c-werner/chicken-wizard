@@ -17,7 +17,7 @@ _global_script_class_icons={
 
 config/name="Chicken"
 run/main_scene="res://Level.tscn"
-config/icon="res://icon.png"
+config/icon="res://assets/icon.png"
 
 [display]
 

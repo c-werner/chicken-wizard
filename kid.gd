@@ -1,9 +1,5 @@
 extends KinematicBody2D
 
-
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
 var chicken = preload("res://chicken.tscn")
 
 export var max_speed = 100
@@ -41,6 +37,7 @@ func _ready():
 func set_color():
 	var cstr
 	
+	# todo there has to be a better way to do this
 	if color == Colors.RANDOM:
 		match randi() % 2:
 			0:
