@@ -26,6 +26,7 @@ signal kid_alive
 signal kid_gone
 
 var timer = Timer.new()
+var ai_timer = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -34,14 +35,7 @@ func _ready():
 	state = States.STAND
 	emit_signal("kid_alive")
 	
-	#var timer = Timer.new()
-	timer.set_wait_time(1.0)
-	timer.set_one_shot(false)
-	timer.connect("timeout", self, "process_ai")
-	add_child(timer)
-	timer.start()
-	
-	process_ai()
+	process_ai(0)
 
 
 func set_color():
@@ -84,19 +78,21 @@ func moving():
 	return rand_range(0, move_time)
 	
 
-func process_ai():
-	var state_time = 1
+func process_ai(delta):
+	ai_timer -= delta
+	if ai_timer > 0:
+		return
 
 	match state:
 		States.STAND:
 			state = States.MOVE
-			state_time = standing()
+			ai_timer = standing()
 		States.MOVE:
 			state = States.STAND
-			state_time = moving()
-	
-	timer.set_wait_time(state_time)
-	
+			ai_timer = moving()
+
+func _process(delta):
+	process_ai(delta)
 
 func _physics_process(_delta):
 	if velocity.length() > 0:

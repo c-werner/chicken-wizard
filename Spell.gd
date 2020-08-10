@@ -1,21 +1,16 @@
 extends RigidBody2D
 
 export var speed = 200
-var life_time = 3
+var life_time = 2
 var Poof = preload("res://Poof.tscn")
 
 signal hit
+var ttl = life_time
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	apply_central_impulse(Vector2(speed, 0).rotated(rotation))
-	
-	var timer = Timer.new()
-	timer.set_wait_time(1.0)
-	timer.set_one_shot(true)
-	timer.connect("timeout", self, "collide")
-	add_child(timer)
-	timer.start()
+	ttl = life_time
 	
 func collide():
 	$Sprite/Trail.emitting = false
@@ -26,6 +21,11 @@ func collide():
 	get_parent().add_child(poof)
 	emit_signal("hit")
 	queue_free()
+
+func _process(delta):
+	ttl -= delta
+	if ttl <= 0:
+		collide()
 
 
 func _on_Spell_body_shape_entered(_body_id, body, _body_shape, _local_shape):
