@@ -23,7 +23,7 @@ func cast_spell():
 	can_fire = true
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	if not dead:
 		var mouse_position = get_viewport().get_mouse_position() # + camera.global_position
 		look_at(mouse_position)

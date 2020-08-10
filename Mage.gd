@@ -22,7 +22,7 @@ func process_input():
 	velocity.y = -int(up) + int(down)
 	
 	
-func live(delta):
+func live(_delta):
 	if Input.is_key_pressed(KEY_K):
 		die()
 		return
