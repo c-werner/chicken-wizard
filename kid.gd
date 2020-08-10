@@ -25,12 +25,22 @@ export(int, "random", "green", "orange") var color = Colors.RANDOM
 signal kid_alive
 signal kid_gone
 
+var timer = Timer.new()
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	randomize()
 	set_color()
 	state = States.STAND
 	emit_signal("kid_alive")
+	
+	#var timer = Timer.new()
+	timer.set_wait_time(1.0)
+	timer.set_one_shot(false)
+	timer.connect("timeout", self, "process_ai")
+	add_child(timer)
+	timer.start()
+	
 	process_ai()
 
 
@@ -76,19 +86,19 @@ func moving():
 
 func process_ai():
 	var state_time = 1
-	while true:
-		match state:
-			States.STAND:
-				state = States.MOVE
-				state_time = standing()
-			States.MOVE:
-				state = States.STAND
-				state_time = moving()
-		
-		yield(get_tree().create_timer(state_time), "timeout")
+
+	match state:
+		States.STAND:
+			state = States.MOVE
+			state_time = standing()
+		States.MOVE:
+			state = States.STAND
+			state_time = moving()
+	
+	timer.set_wait_time(state_time)
 	
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if velocity.length() > 0:
 		$AnimatedSprite.play()
 	else:

@@ -9,7 +9,7 @@ func _ready():
 	pass
 
 
-func _process(delta):
+func _process(_delta):
 	total_kids = len(get_tree().get_nodes_in_group("mobs"))
 	
 	if total_kids == 0:

@@ -53,7 +53,7 @@ func process_ai():
 		yield(get_tree().create_timer(state_time), "timeout")
 	
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if velocity.length() > 0:
 		$AnimatedSprite.play()
 	else:
