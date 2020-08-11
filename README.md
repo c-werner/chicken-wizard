@@ -24,5 +24,4 @@ Mouse and left click to shoot
 - Level structure
 - Use a font that scales
 - Sound
-- Figure out how to handle https://github.com/godotengine/godot/issues/24311
 
